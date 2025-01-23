@@ -1,6 +1,15 @@
 import React from "react";
 
 export default function Navbar(props) {
+  const handletoggle = () => {
+    if (props.darkmode) {
+      props.setdarkMode(false);
+      props.showalert("Dark Mode is Disabled", "success");
+    } else {
+      props.setdarkMode(true);
+      props.showalert("Dark Mode is Enabled", "success");
+    }
+  };
   return (
     <div>
       <nav
@@ -72,7 +81,7 @@ export default function Navbar(props) {
                 props.darkmode ? "btn-outline-light" : "btn-outline-dark"
               }`}
               type="submit"
-              onClick={() => props.setdarkMode(!props.darkmode)}
+              onClick={handletoggle}
             >
               {props.darkmode ? "Disable DarkMode🌕" : "Enable DarkMode🌑"}
             </button>
