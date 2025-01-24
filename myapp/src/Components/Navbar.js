@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function Navbar(props) {
-  const handletoggle = () => {
+  const handleToggle = () => {
     if (props.darkmode) {
       props.setdarkMode(false);
       props.showalert("Dark Mode is Disabled", "success");
@@ -10,6 +10,7 @@ export default function Navbar(props) {
       props.showalert("Dark Mode is Enabled", "success");
     }
   };
+
   return (
     <div>
       <nav
@@ -18,7 +19,7 @@ export default function Navbar(props) {
         }`}
       >
         <div className="container-fluid">
-          <a className="navbar-brand" href="/">
+          <a className="navbar-brand fw-bold" href="/">
             {props.title}
           </a>
           <button
@@ -41,7 +42,7 @@ export default function Navbar(props) {
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="/">
-                  Link
+                  About
                 </a>
               </li>
               <li className="nav-item dropdown">
@@ -52,17 +53,17 @@ export default function Navbar(props) {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Dropdown
+                  More
                 </a>
                 <ul className="dropdown-menu">
                   <li>
                     <a className="dropdown-item" href="/">
-                      Action
+                      Services
                     </a>
                   </li>
                   <li>
                     <a className="dropdown-item" href="/">
-                      Another action
+                      Contact
                     </a>
                   </li>
                   <li>
@@ -70,20 +71,57 @@ export default function Navbar(props) {
                   </li>
                   <li>
                     <a className="dropdown-item" href="/">
-                      Something else here
+                      Feedback
                     </a>
                   </li>
                 </ul>
               </li>
             </ul>
+            <div className="d-flex justify-content-center gap-1 py-2 mx-5">
+              <div
+                className="rounded-circle bg-danger border"
+                style={{ width: "20px", height: "20px", cursor: "pointer" }}
+                title="Red"
+                onClick={() => props.showalert("Red Color Selected", "info")}
+              ></div>
+              <div
+                className="rounded-circle bg-primary border"
+                style={{ width: "20px", height: "20px", cursor: "pointer" }}
+                title="Blue"
+                onClick={() => props.showalert("Blue Color Selected", "info")}
+              ></div>
+              <div
+                className="rounded-circle bg-success border"
+                style={{ width: "20px", height: "20px", cursor: "pointer" }}
+                title="Green"
+                onClick={() => props.showalert("Green Color Selected", "info")}
+              ></div>
+              <div
+                className="rounded-circle bg-warning border"
+                style={{ width: "20px", height: "20px", cursor: "pointer" }}
+                title="Orange"
+                onClick={() => props.showalert("Orange Color Selected", "info")}
+              ></div>
+              <div
+                className="rounded-circle border"
+                style={{
+                  width: "20px",
+                  height: "20px",
+                  cursor: "pointer",
+                  backgroundColor: "pink",
+                }}
+                title="Pink"
+                onClick={() => props.showalert("Pink Color Selected", "info")}
+              ></div>
+            </div>
             <button
               className={`btn ${
                 props.darkmode ? "btn-outline-light" : "btn-outline-dark"
               }`}
-              type="submit"
-              onClick={handletoggle}
+              type="button"
+              onClick={handleToggle}
             >
-              {props.darkmode ? "Disable DarkMode🌕" : "Enable DarkMode🌑"}
+              {props.darkmode ? "Disable Dark Mode 🌕" : "Enable Dark Mode 🌑"}
             </button>
           </div>
         </div>
