@@ -1,24 +1,37 @@
 import React, { useState } from "react";
 
-export default function TextForm() {
+export default function TextForm(props) {
   const [text, setText] = useState("");
   const handleOnChange = (event) => {
     setText(event.target.value);
   };
   const convertUppercase = () => {
     setText(text.toUpperCase());
+    props.showalert("The text successfuly coverted to upperCase", "Success");
   };
   const convertLowerCase = () => {
     setText(text.toLowerCase());
+    props.showalert("text Successflly converted to lowercase", "success");
   };
 
   const clearText = () => {
     setText("");
   };
 
+  // const copyToClipboard = () => {
+  //   navigator.clipboard.writeText(text);
+  //   props.showToast(
+  //     "message Copied to clipboard successfully",
+  //     "Message Copied"
+  //   );
+  //   setTimeout(() => {
+  //     props.showToast(null);
+  //   }, 1500);
+  // };
+
   const copyToClipboard = () => {
     navigator.clipboard.writeText(text);
-    alert("Text copied to clipboard!");
+    props.showToast("Text copied to clipboard!", "Copied!");
   };
 
   const extractEmails = () => {

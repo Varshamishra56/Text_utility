@@ -3,6 +3,7 @@ import "./App.css";
 import Navbar from "./Components/Navbar";
 import TextForm from "./Components/TextForm";
 import Alert from "./Components/Alert";
+import ToastCopy from "./Components/ToastCopy";
 
 function App() {
   const [darkmode, setdarkMode] = useState(true);
@@ -12,8 +13,17 @@ function App() {
       msg: message,
       type: type,
     });
+    setTimeout(() => {
+      setalert(null);
+    }, 2000);
   };
-
+  const [toast, SetToast] = useState(null);
+  const showToast = (message, text) => {
+    SetToast({
+      message: message,
+      text: text,
+    });
+  };
   return (
     <div
       className={`${darkmode ? "bg-dark text-white" : "bg-light text-dark"}`}
@@ -26,7 +36,8 @@ function App() {
         showalert={showalert}
       />
       <Alert alert={alert} />
-      <TextForm />
+      <TextForm showalert={showalert} showToast={showToast} />
+      <ToastCopy toast={toast} />
     </div>
   );
 }
