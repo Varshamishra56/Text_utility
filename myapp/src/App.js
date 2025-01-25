@@ -4,6 +4,8 @@ import Navbar from "./Components/Navbar";
 import TextForm from "./Components/TextForm";
 import Alert from "./Components/Alert";
 import ToastCopy from "./Components/ToastCopy";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import About from "./Components/About";
 
 function App() {
   const [darkmode, setdarkMode] = useState(true);
@@ -25,20 +27,33 @@ function App() {
     });
   };
   return (
-    <div
-      className={`${darkmode ? "bg-dark text-white" : "bg-light text-dark"}`}
-      style={{ minHeight: "100vh" }}
-    >
-      <Navbar
-        title="TextAnalyser"
-        darkmode={darkmode}
-        setdarkMode={setdarkMode}
-        showalert={showalert}
-      />
-      <Alert alert={alert} />
-      <TextForm showalert={showalert} showToast={showToast} />
-      <ToastCopy toast={toast} />
-    </div>
+    <Router>
+      <div
+        className={`${darkmode ? "bg-dark text-white" : "bg-light text-dark"}`}
+        style={{ minHeight: "100vh" }}
+      >
+        <Navbar
+          title="TextAnalyser"
+          darkmode={darkmode}
+          setdarkMode={setdarkMode}
+          showalert={showalert}
+        />
+        <Alert alert={alert} />
+
+        <Routes>
+          <Route path="/about" element={<About />} />
+          <Route
+            path="/"
+            element={
+              <>
+                <TextForm showalert={showalert} showToast={showToast} />
+                <ToastCopy toast={toast} />
+              </>
+            }
+          />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
