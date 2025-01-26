@@ -2,7 +2,23 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function Navbar(props) {
-  const handleToggle = () => {
+  const removeBodyClasses = () => {
+    document.body.classList.remove("bg-light");
+    document.body.classList.remove("bg-dark");
+    document.body.classList.remove("bg-warning");
+    document.body.classList.remove("bg-danger");
+    document.body.classList.remove("bg-success");
+    document.body.classList.remove("bg-info");
+  };
+
+  const handleToggle = (cls) => {
+    removeBodyClasses();
+    if (cls) {
+      document.body.classList.add("bg-" + cls);
+      props.setBgColor(cls);
+    } else {
+      props.setBgColor(props.darkmode ? "dark" : "light");
+    }
     if (props.darkmode) {
       props.setdarkMode(false);
       props.showalert("Dark Mode is Disabled", "success");
@@ -83,25 +99,25 @@ export default function Navbar(props) {
                 className="rounded-circle bg-danger border"
                 style={{ width: "20px", height: "20px", cursor: "pointer" }}
                 title="Red"
-                onClick={() => props.showalert("Red Color Selected", "info")}
+                onClick={() => handleToggle("danger")}
               ></div>
               <div
                 className="rounded-circle bg-primary border"
                 style={{ width: "20px", height: "20px", cursor: "pointer" }}
                 title="Blue"
-                onClick={() => props.showalert("Blue Color Selected", "info")}
+                onClick={() => handleToggle("info")}
               ></div>
               <div
                 className="rounded-circle bg-success border"
                 style={{ width: "20px", height: "20px", cursor: "pointer" }}
                 title="Green"
-                onClick={() => props.showalert("Green Color Selected", "info")}
+                onClick={() => handleToggle("success")}
               ></div>
               <div
                 className="rounded-circle bg-warning border"
                 style={{ width: "20px", height: "20px", cursor: "pointer" }}
                 title="Orange"
-                onClick={() => props.showalert("Orange Color Selected", "info")}
+                onClick={() => handleToggle("warning")}
               ></div>
               <div
                 className="rounded-circle border"
@@ -112,7 +128,7 @@ export default function Navbar(props) {
                   backgroundColor: "pink",
                 }}
                 title="Pink"
-                onClick={() => props.showalert("Pink Color Selected", "info")}
+                onClick={() => handleToggle("danger")}
               ></div>
             </div>
             <button
@@ -120,7 +136,7 @@ export default function Navbar(props) {
                 props.darkmode ? "btn-outline-light" : "btn-outline-dark"
               }`}
               type="button"
-              onClick={handleToggle}
+              onClick={() => handleToggle(null)}
             >
               {props.darkmode ? "Disable Dark Mode 🌕" : "Enable Dark Mode 🌑"}
             </button>

@@ -10,26 +10,26 @@ import About from "./Components/About";
 function App() {
   const [darkmode, setdarkMode] = useState(true);
   const [alert, setalert] = useState(null);
+  const [bgColor, setBgColor] = useState(darkmode ? "dark" : "light");
+  const [toast, SetToast] = useState(null);
+
   const showalert = (message, type) => {
-    setalert({
-      msg: message,
-      type: type,
-    });
+    setalert({ msg: message, type: type });
     setTimeout(() => {
       setalert(null);
     }, 2000);
   };
-  const [toast, SetToast] = useState(null);
+
   const showToast = (message, text) => {
-    SetToast({
-      message: message,
-      text: text,
-    });
+    SetToast({ message: message, text: text });
   };
+
   return (
     <Router>
       <div
-        className={`${darkmode ? "bg-dark text-white" : "bg-light text-dark"}`}
+        className={`bg-${bgColor} ${
+          bgColor === "dark" ? "text-white" : "text-dark"
+        }`}
         style={{ minHeight: "100vh" }}
       >
         <Navbar
@@ -37,6 +37,7 @@ function App() {
           darkmode={darkmode}
           setdarkMode={setdarkMode}
           showalert={showalert}
+          setBgColor={setBgColor}
         />
         <Alert alert={alert} />
 

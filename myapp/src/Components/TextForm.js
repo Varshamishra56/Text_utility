@@ -65,19 +65,39 @@ export default function TextForm(props) {
         ></textarea>
       </div>
       <div className="button-group mb-4">
-        <button className="btn btn-primary me-2" onClick={convertUppercase}>
+        <button
+          className="btn btn-primary me-2"
+          onClick={convertUppercase}
+          disabled={text.length == 0}
+        >
           Convert to Uppercase
         </button>
-        <button className="btn btn-info me-2" onClick={convertLowerCase}>
+        <button
+          className="btn btn-info me-2"
+          onClick={convertLowerCase}
+          disabled={text.length == 0}
+        >
           Convert to Lowercase
         </button>
-        <button className="btn btn-warning me-2" onClick={extractEmails}>
+        <button
+          className="btn btn-warning me-2"
+          onClick={extractEmails}
+          disabled={text.length == 0}
+        >
           Extract Emails
         </button>
-        <button className="btn btn-success me-2" onClick={copyToClipboard}>
+        <button
+          className="btn btn-success me-2"
+          onClick={copyToClipboard}
+          disabled={text.length == 0}
+        >
           Copy Text
         </button>
-        <button className="btn btn-danger" onClick={clearText}>
+        <button
+          className="btn btn-danger"
+          onClick={clearText}
+          disabled={text.length == 0}
+        >
           Clear Text
         </button>
       </div>
